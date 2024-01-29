@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        function populateDiv(){
+            // alert("hi");
+            const a = document.getElementById("firstNum").value;
+            console.log(a);
+            const b = document.getElementById("secondNum").value;
+            console.log(b);
+            const element = document.getElementById("finalSum");
+            // console.log(element);
+            // element.innerHTML=parseInt(a)+ parseInt(b);
+            
+            // using Promise
+            // fetch("https://sum-server.100xdevs.com/sum?a="+a+"&b="+b)
+            //     .then(function(response){
+                //         console.log(response);
+            //         response.text()
+            //             .then(function(response2){
+                //                 console.log(response2);
+            //                 element.innerHTML = response2;
+            //             })
+            //     })
+            
+            // using async and await
+            async function getSum(){
+                const x = await fetch("https://sum-server.100xdevs.com/sum?a="+a+"&b="+b);
+                const y = await x.text();
+                element.innerHTML = y;
+                console.log(y);
+            }            
+            getSum();
+        }       
+    </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="firstNum" type="text" placeholder="First Number"></input>
+    </br>
+    </br>
+    <input id="secondNum" type="text" placeholder="Second Number"></input>
+    <br>
+    <br>
+    <button onclick="populateDiv()">Calculate Sum</button>
+    <br>
+    <br>
+    <div id="finalSum"></div>
+
+</body>
+</html>
